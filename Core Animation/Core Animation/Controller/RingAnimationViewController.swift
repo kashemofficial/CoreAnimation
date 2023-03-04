@@ -10,10 +10,22 @@ import UIKit
 class RingAnimationViewController: UIViewController {
 
     let shape = CAShapeLayer()
+    
+    private let label : UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.text = "Successfully"
+        label.font = .systemFont(ofSize: 36, weight: .light)
+        return label
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        label.sizeToFit()
+        view.addSubview(label)
+        label.center = view.center
         let circlePath = UIBezierPath(arcCenter: view.center,
                                       radius: 150,
                                       startAngle: -(.pi / 2) ,
@@ -30,7 +42,7 @@ class RingAnimationViewController: UIViewController {
         
         shape.path = circlePath.cgPath
         shape.lineWidth = 15
-        shape.strokeColor = UIColor.green.cgColor
+        shape.strokeColor = UIColor.systemPink.cgColor
         shape.fillColor = UIColor.clear.cgColor
         shape.strokeEnd = 0
         view.layer.addSublayer(shape)
@@ -47,7 +59,7 @@ class RingAnimationViewController: UIViewController {
     @objc func didTapButton(){
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.toValue = 1
-        animation.duration = 3
+        animation.duration = 5
         animation.isRemovedOnCompletion = false
         animation.fillMode = .forwards
         shape.add(animation, forKey: "animation")
