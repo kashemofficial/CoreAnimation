@@ -20,6 +20,12 @@ class RingAnimationViewController: UIViewController {
                                       endAngle: .pi * 2,
                                       clockwise: true)
         
+        let trackShape = CAShapeLayer()
+        trackShape.path = circlePath.cgPath
+        trackShape.fillColor = UIColor.clear.cgColor
+        trackShape.lineWidth = 15
+        trackShape.strokeColor = UIColor.lightGray.cgColor
+        view.layer.addSublayer(trackShape)
         
         
         shape.path = circlePath.cgPath
